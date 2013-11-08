@@ -21,6 +21,8 @@
 		C1A277AA182C9ED3005716C7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1A2778C182C9ED3005716C7 /* UIKit.framework */; };
 		C1A277B2182C9ED3005716C7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C1A277B0182C9ED3005716C7 /* InfoPlist.strings */; };
 		C1A277B4182C9ED3005716C7 /* NSUserDefaults__Segues_and_Protocols_Challenge_SolutionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A277B3182C9ED3005716C7 /* NSUserDefaults__Segues_and_Protocols_Challenge_SolutionTests.m */; };
+		C1A277BF182CA0DF005716C7 /* MASSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A277BE182CA0DF005716C7 /* MASSignInViewController.m */; };
+		C1A277C2182CA0F0005716C7 /* MASCreateAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A277C1182CA0F0005716C7 /* MASCreateAccountViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,10 @@
 		C1A277AF182C9ED3005716C7 /* NSUserDefaults, Segues and Protocols Challenge SolutionTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NSUserDefaults, Segues and Protocols Challenge SolutionTests-Info.plist"; sourceTree = "<group>"; };
 		C1A277B1182C9ED3005716C7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C1A277B3182C9ED3005716C7 /* NSUserDefaults__Segues_and_Protocols_Challenge_SolutionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSUserDefaults__Segues_and_Protocols_Challenge_SolutionTests.m; sourceTree = "<group>"; };
+		C1A277BD182CA0DF005716C7 /* MASSignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASSignInViewController.h; sourceTree = "<group>"; };
+		C1A277BE182CA0DF005716C7 /* MASSignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASSignInViewController.m; sourceTree = "<group>"; };
+		C1A277C0182CA0F0005716C7 /* MASCreateAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCreateAccountViewController.h; sourceTree = "<group>"; };
+		C1A277C1182CA0F0005716C7 /* MASCreateAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASCreateAccountViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +121,10 @@
 				C1A27797182C9ED3005716C7 /* MASAppDelegate.h */,
 				C1A27798182C9ED3005716C7 /* MASAppDelegate.m */,
 				C1A2779A182C9ED3005716C7 /* Main.storyboard */,
+				C1A277BD182CA0DF005716C7 /* MASSignInViewController.h */,
+				C1A277BE182CA0DF005716C7 /* MASSignInViewController.m */,
+				C1A277C0182CA0F0005716C7 /* MASCreateAccountViewController.h */,
+				C1A277C1182CA0F0005716C7 /* MASCreateAccountViewController.m */,
 				C1A2779D182C9ED3005716C7 /* MASViewController.h */,
 				C1A2779E182C9ED3005716C7 /* MASViewController.m */,
 				C1A277A0182C9ED3005716C7 /* Images.xcassets */,
@@ -250,7 +260,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1A277BF182CA0DF005716C7 /* MASSignInViewController.m in Sources */,
 				C1A2779F182C9ED3005716C7 /* MASViewController.m in Sources */,
+				C1A277C2182CA0F0005716C7 /* MASCreateAccountViewController.m in Sources */,
 				C1A27799182C9ED3005716C7 /* MASAppDelegate.m in Sources */,
 				C1A27795182C9ED3005716C7 /* main.m in Sources */,
 			);
