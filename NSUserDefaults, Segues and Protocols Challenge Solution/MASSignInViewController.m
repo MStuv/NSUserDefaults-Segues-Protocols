@@ -35,9 +35,17 @@
     // Dispose of any resources that can be recreated.
 }
 
+
 - (IBAction)loginButtonPressed:(UIButton *)sender {
+    
+    ///PerformSeque to the MASVC using the "toViewController" segue
+    [self performSegueWithIdentifier:@"toViewController" sender:sender];
+
 }
 
 - (IBAction)createAccountBarButtonPressed:(UIBarButtonItem *)sender {
+    
+    ///PerformSeque to the Create Account VC using the "toCreateAccountViewController" segue
+    [self performSegueWithIdentifier:@"toCreateAccountViewController" sender:sender];
 }
 @end
