@@ -13,4 +13,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *passwordLabel;
 
+/// Create a property to hold the data passed from the prepareToSegue in the signInVC
+@property (strong, nonatomic) NSString *currentUsername;
+
 @end

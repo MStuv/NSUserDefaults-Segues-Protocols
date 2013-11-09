@@ -7,6 +7,7 @@
 //
 
 #import "MASSignInViewController.h"
+#import "MASViewController.h"
 
 @interface MASSignInViewController ()
 
@@ -42,6 +43,7 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+///SETTING DELEGATE FOR CREATEACCOUNT VC DELEGATE PROTOCOL
     // is the sender of class UIBarButtonItem... if so continue
     if ([sender isKindOfClass:[UIBarButtonItem class]]) {
     
@@ -55,6 +57,18 @@
             // Now in the destinationVC (createAccount) when a delegate method is called (in cancel button) the delegate method knows that the currentVC (signInVC) is the delegate.
         }
     }
+ 
+///SENDING DATA TO MAS VC
+    if ([sender isKindOfClass:[UIButton class]]) {
+        
+        if ([segue.destinationViewController isKindOfClass:[MASViewController class]]) {
+            
+            MASViewController *userVC = segue.destinationViewController;
+            
+            userVC.currentUsername = self.currentUserName;
+        }
+    }
+    
 }
 
 
@@ -69,6 +83,11 @@
 - (IBAction)loginButtonPressed:(UIButton *)sender {
     
     if ([self doesTheUserHaveAnAccount]==YES) {
+        
+    /// if the user has logged in correctly, set the currentUserName object for pushing the data.
+        
+        self.currentUserName = self.usernameTextField.text;
+       
         //PerformSeque to the MASVC using the "toViewController" segue
         [self performSegueWithIdentifier:@"toViewController" sender:sender];
     }
@@ -82,13 +101,13 @@
 
 #pragma mark - Helper Methods
 
-/// Check that the user login is correct
+// Check that the user login is correct
 -(BOOL)doesTheUserHaveAnAccount
 {
-    /// Create an array with the userData stored in NSUserDefaults
+    // Create an array with the userData stored in NSUserDefaults
     NSArray *userLogInAsPropertyList = [[NSUserDefaults standardUserDefaults] arrayForKey:ADDED_USER_ACCOUNT_LOGIN];
     
-    /// enumerate through array to find a matching username
+    // enumerate through array to find a matching username
        for (NSDictionary *dictionary in userLogInAsPropertyList) {
            
            if (!([dictionary[USER_NAME] isEqualToString:self.usernameTextField.text]))

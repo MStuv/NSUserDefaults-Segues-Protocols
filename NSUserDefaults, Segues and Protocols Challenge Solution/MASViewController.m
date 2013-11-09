@@ -7,6 +7,7 @@
 //
 
 #import "MASViewController.h"
+#import "MASCreateAccountViewController.h"
 
 @interface MASViewController ()
 
@@ -18,7 +19,25 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    NSLog(@"Current User is: %@", self.currentUsername);
+    
+    /// Create an array with the userData stored in NSUserDefaults
+    NSArray *userLogInAsPropertyList = [[NSUserDefaults standardUserDefaults] arrayForKey:ADDED_USER_ACCOUNT_LOGIN];
+    
+    /// enumerate through array to find a matching username
+    for (NSDictionary *dictionary in userLogInAsPropertyList) {
+        
+        if ([dictionary[USER_NAME] isEqualToString: self.currentUsername]) {
+            
+            self.usernameLabel.text = dictionary[USER_NAME];
+            self.passwordLabel.text = dictionary[USER_PASSWORD];
+        } else {
+            NSLog(@"%@ Not correct... keep going", dictionary[USER_NAME]);
+        }
+    }
 }
+
 
 - (void)didReceiveMemoryWarning
 {
