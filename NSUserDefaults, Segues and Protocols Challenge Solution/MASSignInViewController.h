@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MASCreateAccountViewController.h"
 
-@interface MASSignInViewController : UIViewController
+@interface MASSignInViewController : UIViewController <MASCreateAccountViewControllerDelegate>
+
 
 @property (strong, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (strong, nonatomic) IBOutlet UITextField *passwordTextField;

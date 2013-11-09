@@ -7,6 +7,7 @@
 //
 
 #import "MASCreateAccountViewController.h"
+#import "MASSignInViewController.h"
 
 @interface MASCreateAccountViewController ()
 
@@ -35,9 +36,17 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+
 - (IBAction)cancelButtonPressed:(UIButton *)sender {
+    
+    NSLog(@"cancelButtonPressed");
+    [self.delegate didCancel];
 }
 
 - (IBAction)createAccountButtonPressed:(UIButton *)sender {
+    
+    NSLog(@"createAccountButtonPressed");
+    [self.delegate didCreateAccount];
 }
 @end

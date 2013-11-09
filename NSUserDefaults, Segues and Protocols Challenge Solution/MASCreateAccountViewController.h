@@ -8,8 +8,22 @@
 
 #import <UIKit/UIKit.h>
 
+/// Create Protocol
+@protocol MASCreateAccountViewControllerDelegate <NSObject>
+
+/// Protocol Methods
+@required
+-(void)didCancel;
+-(void)didCreateAccount;
+
+@end
+
 @interface MASCreateAccountViewController : UIViewController
-@property (strong, nonatomic) IBOutlet UITextField *usernameTextField;
+
+/// Create Property of Protocol named delegate
+@property (strong, nonatomic) id <MASCreateAccountViewControllerDelegate> delegate;
+
+@property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (strong, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (strong, nonatomic) IBOutlet UITextField *confirmPasswordTextField;
 
