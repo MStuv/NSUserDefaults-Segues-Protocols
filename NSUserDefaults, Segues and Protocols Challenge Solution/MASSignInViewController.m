@@ -27,9 +27,13 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+
 }
 
-/** PREPARE FOR SEGUE
+
+
+
+/* PREPARE FOR SEGUE
    • Used to pass info from currentVC to destinationVC
    • Use if statements to test that the proper segue is being used your intended data
         ** Note: when testing (sender isKindOfClass:) the class refers to the object that was used in Storyboard.
@@ -38,17 +42,17 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    /// is the sender of class UIBarButtonItem... if so continue
+    // is the sender of class UIBarButtonItem... if so continue
     if ([sender isKindOfClass:[UIBarButtonItem class]]) {
     
-        /// is the destination of the segue of class createAccountVC... if so continue
+        // is the destination of the segue of class createAccountVC... if so continue
         if ([segue.destinationViewController isKindOfClass:[MASCreateAccountViewController class]]) {
             
-            /// create instance of createAccountVC and set its value equal to the segue's destinationVC
+            // create instance of createAccountVC and set its value equal to the segue's destinationVC
             MASCreateAccountViewController *createAccountVC = segue.destinationViewController;
-            /// set instance (now the destinationVC) delegate property to the current VC
+            // set instance (now the destinationVC) delegate property to the current VC
             createAccountVC.delegate = self;
-            /// Now in the destinationVC (createAccount) when a delegate method is called (in cancel button) the delegate method knows that the currentVC (signInVC) is the delegate.
+            // Now in the destinationVC (createAccount) when a delegate method is called (in cancel button) the delegate method knows that the currentVC (signInVC) is the delegate.
         }
     }
 }
@@ -64,14 +68,14 @@
 
 - (IBAction)loginButtonPressed:(UIButton *)sender {
     
-    ///PerformSeque to the MASVC using the "toViewController" segue
+    //PerformSeque to the MASVC using the "toViewController" segue
     [self performSegueWithIdentifier:@"toViewController" sender:sender];
 
 }
 
 - (IBAction)createAccountBarButtonPressed:(UIBarButtonItem *)sender {
     
-    ///PerformSeque to the Create Account VC using the "toCreateAccountViewController" segue
+    //PerformSeque to the Create Account VC using the "toCreateAccountViewController" segue
     [self performSegueWithIdentifier:@"toCreateAccountViewController" sender:sender];
 }
 
@@ -80,7 +84,7 @@
 
 -(void)didCancel
 {
-    /// Dismiss VC
+    // Dismiss VC
     [self dismissViewControllerAnimated:YES completion:nil];
     
 }
