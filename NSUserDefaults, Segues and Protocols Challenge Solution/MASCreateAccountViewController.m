@@ -10,7 +10,7 @@
 #import "MASSignInViewController.h"
 
 @interface MASCreateAccountViewController ()
-#define ADDED_USER_ACCOUNT_LOGIN @"Added User Account Login"
+
 
 @end
 
@@ -33,7 +33,7 @@
     
     
     
-    /// Load data from NSUserDefaults to TEST IN DEBUGGER
+    // Load data from NSUserDefaults to TEST IN DEBUGGER
      NSArray *userLogInAsPropertyList = [[NSUserDefaults standardUserDefaults] arrayForKey:ADDED_USER_ACCOUNT_LOGIN];
     for (NSDictionary *dictionary in userLogInAsPropertyList) {
         NSLog(@"%@", dictionary[USER_NAME]);
@@ -61,16 +61,17 @@
 
 - (IBAction)createAccountButtonPressed:(UIButton *)sender {
     
-    if ([self wasDataUserEnteredCorrect] == YES ) {
-    
-    /// calls Method to add user to NSUserDefaults
-    [self AddUserToSavedUsers];
-    [self.delegate didCreateAccount];
+    if ([self doesUserAlreadyExsist] == NO) {
+        if ([self wasDataUserEnteredCorrect] == YES) {
+            // calls Method to add user to NSUserDefaults
+            [self AddUserToSavedUsers];
+            [self.delegate didCreateAccount];
+        }
     }
 }
 
 
-/// ADDED CLEAR PLIST BUTTON TO CLEAR THE PLIST BEFORE STARTING
+// ADDED CLEAR PLIST BUTTON TO CLEAR THE PLIST BEFORE STARTING
 - (IBAction)clearPlistButtonPressed:(UIButton *)sender {
     NSArray *clearPlistArray = [[NSArray alloc] init];
     [[NSUserDefaults standardUserDefaults] setObject:clearPlistArray forKey:ADDED_USER_ACCOUNT_LOGIN];
@@ -81,7 +82,7 @@
 
 #pragma mark - Helper methods
 
-/// Method That Proper Data was Entered by User
+// Method That Proper Data was Entered by User
 -(BOOL)wasDataUserEnteredCorrect
 {
     if ([self.usernameTextField.text isEqualToString:@""] || [self.passwordTextField.text isEqualToString:@""]||[self.confirmPasswordTextField.text isEqualToString:@""]) {
@@ -105,35 +106,56 @@
     
 }
 
+-(BOOL)doesUserAlreadyExsist
+{
+    // Create an array with the userData stored in NSUserDefaults
+    NSArray *userLogInAsPropertyList = [[NSUserDefaults standardUserDefaults] arrayForKey:ADDED_USER_ACCOUNT_LOGIN];
+    
+    // enumerate through array to find if a matching username already exsists
+    for (NSDictionary *dictionary in userLogInAsPropertyList) {
+        
+        if ([self.usernameTextField.text isEqualToString:dictionary[USER_NAME]]) {
+        
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Username Exsist" message:@"Username already exsist. Please enter a different username" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
+            [alert show];
+            return YES;
+        }
+     
+    }
+    return NO;
+        
+}
+    
 
-/// Method Adds New User to the NSUserDefaults plist of users
+
+// Method Adds New User to the NSUserDefaults plist of users
+
 -(void)AddUserToSavedUsers
 {
-    /// create instance of NSDictionary and load with username & password using the #define statements as the keys
+    // create instance of NSDictionary and load with username & password using the #define statements as the keys
     NSDictionary *dictionary = @{USER_NAME: self.usernameTextField.text, USER_PASSWORD : self.passwordTextField.text};
-
     
-    /// Creating mutableArrary from the exsisting users in NSUserDefaults
+    // Creating mutableArrary from the exsisting users in NSUserDefaults
     NSMutableArray *usersAccountSignInAsPropertyLists =
-                /// returns a NSUserDefaults propertyList with currently saved user login data
+                // returns a NSUserDefaults propertyList with currently saved user login data
                 [[[NSUserDefaults standardUserDefaults]
-                  /// from returned NSUserDefaults propertyList, get the array at the ADDED_USER_ACCOUNT_LOGIN key
+                  // from returned NSUserDefaults propertyList, get the array at the ADDED_USER_ACCOUNT_LOGIN key
                   arrayForKey:ADDED_USER_ACCOUNT_LOGIN]
-                 /// make the array mutable
+                 // make the array mutable
                  mutableCopy];
     
-    /// if the usersAccountSignInAsPropertyList array has not yet been created... this is the first item... alloc & init. if it is already created, move on.
+    // if the usersAccountSignInAsPropertyList array has not yet been created... this is the first item... alloc & init. if it is already created, move on.
     if (!usersAccountSignInAsPropertyLists) {
         usersAccountSignInAsPropertyLists = [[NSMutableArray alloc] init];
     }
     
-    /// create an object in the array using the dictionary object that is returned when the userAccountsAsAPropertyList method is called.
+    // create an object in the array using the dictionary object that is returned when the userAccountsAsAPropertyList method is called.
     [usersAccountSignInAsPropertyLists addObject:dictionary];
     
-    /// Set the array as an object in the NSUserDefaults
+    // Set the array as an object in the NSUserDefaults
     [[NSUserDefaults standardUserDefaults] setObject:usersAccountSignInAsPropertyLists forKey:ADDED_USER_ACCOUNT_LOGIN];
     
-    /// save the data to the NSUserDefault
+    // save the data to the NSUserDefault
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 

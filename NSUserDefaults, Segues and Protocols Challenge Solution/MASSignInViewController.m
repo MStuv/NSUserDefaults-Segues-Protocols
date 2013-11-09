@@ -65,18 +65,53 @@
     // Dispose of any resources that can be recreated.
 }
 
-
+#pragma mark - UIButtons
 - (IBAction)loginButtonPressed:(UIButton *)sender {
     
-    //PerformSeque to the MASVC using the "toViewController" segue
-    [self performSegueWithIdentifier:@"toViewController" sender:sender];
-
+    if ([self doesTheUserHaveAnAccount]==YES) {
+        //PerformSeque to the MASVC using the "toViewController" segue
+        [self performSegueWithIdentifier:@"toViewController" sender:sender];
+    }
 }
 
 - (IBAction)createAccountBarButtonPressed:(UIBarButtonItem *)sender {
-    
     //PerformSeque to the Create Account VC using the "toCreateAccountViewController" segue
     [self performSegueWithIdentifier:@"toCreateAccountViewController" sender:sender];
+}
+
+
+#pragma mark - Helper Methods
+
+/// Check that the user login is correct
+-(BOOL)doesTheUserHaveAnAccount
+{
+    /// Create an array with the userData stored in NSUserDefaults
+    NSArray *userLogInAsPropertyList = [[NSUserDefaults standardUserDefaults] arrayForKey:ADDED_USER_ACCOUNT_LOGIN];
+    
+    /// enumerate through array to find a matching username
+       for (NSDictionary *dictionary in userLogInAsPropertyList) {
+           
+           if (!([dictionary[USER_NAME] isEqualToString:self.usernameTextField.text]))
+            {
+                NSLog(@"Called from SignIn: %@",dictionary[USER_NAME]);
+                
+            } else if (([dictionary[USER_NAME] isEqualToString:self.usernameTextField.text]) && (!([dictionary[USER_PASSWORD] isEqualToString:self.passwordTextField.text]))) {
+               UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Wrong Password" message:@"Please try again" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
+               [alert show];
+               return NO;
+            }
+           
+            else if (([dictionary[USER_NAME] isEqualToString:self.usernameTextField.text]) && ([dictionary[USER_PASSWORD] isEqualToString:self.passwordTextField.text])) {
+                
+                return YES;
+            }
+           
+    }
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Username Does Not Exsist"message:@"Please create an account to continue" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
+    
+    [alert show];
+    return NO;
 }
 
 

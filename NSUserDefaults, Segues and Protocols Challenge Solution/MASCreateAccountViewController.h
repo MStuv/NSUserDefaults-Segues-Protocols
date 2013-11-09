@@ -11,6 +11,7 @@
 /// Create defines for objects that have values that will never change
 #define USER_NAME @"username"
 #define USER_PASSWORD @"password"
+#define ADDED_USER_ACCOUNT_LOGIN @"Added User Account Login"
 
 // Create Protocol
 @protocol MASCreateAccountViewControllerDelegate <NSObject>
